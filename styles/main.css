@@ -65,6 +65,11 @@ body {
     background-color: white;
 }
 
+.git checkoutlinks-container .navbar-link:active {
+    color: rgb(233,50,117);
+    background-color: white;
+}
+
 @media (min-width: 640px) {
     html {font-size: 112%;}
 }
@@ -76,6 +81,10 @@ body {
 .container {
     margin: 0 auto;
     max-width: 64rem;
+} 
+
+.container.narrow {
+ max-width: 56rem;
 }
 
 @media (min-width: 640px) {
