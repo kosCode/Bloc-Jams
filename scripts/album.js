@@ -30,9 +30,25 @@
      ]
  };
 
+ // The assignment album
+ var albumMidon = {
+     title: 'State of Mind',
+     artist: 'Raul Midon',
+     label: 'Manhattan Records',
+     year: '2005',
+     albumArtUrl: 'assets/images/album_covers/12.png',
+     songs: [
+         { title: 'State of Mind', duration: '3:25' },
+         { title: 'Gonna Leave', duration: '3:51' },
+         { title: 'Keep on Hoping', duration: '4:32'},
+         { title: 'Mystery Girl', duration: '4:22' },
+         { title: 'Waited All My Life', duration: '4:36'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength){
-    var templat =
-        '< tr class="album-view-song-item">'
+    var template =
+        '<tr class="album-view-song-item">'
     +   '  <td class="song-item-number">' + songNumber + '<td>'
     +   '  <td class="song-item-title">' + songName + '</td>'
     +   '  <td class="song-item-duration">' + songLength + '</td>'
@@ -42,13 +58,14 @@ var createSongRow = function(songNumber, songName, songLength){
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 var setCurrentAlbum = function(album) {
      // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
  
      // #2
      albumTitle.firstChild.nodeValue = album.title;
@@ -68,3 +85,12 @@ var setCurrentAlbum = function(album) {
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
  };
+
+var albumList = [albumPicasso,albumMarconi,albumMidon];
+var pointer = 1;
+
+albumImage.addEventListener("click", function(event) {
+    setCurrentAlbum(albumList[pointer]);
+    pointer = (3 + pointer + 1) % 3;
+});
+
